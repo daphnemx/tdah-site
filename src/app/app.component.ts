@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-project';
+  name = 'angular-project';
+  showLanding = true;
+
+  onButtonClicked(value: boolean): void {
+    this.showLanding = false;
+    console.log(this.showLanding)
+  }
 }
