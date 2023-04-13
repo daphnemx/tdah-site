@@ -1,0 +1,37 @@
+.articulo-component {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .articulo-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .articulo-image img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .articulo-title {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    height: 5rem;
+  }
+  
+  .articulo-paragraph {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  @media (max-width: 1400px) { 
+    .articulo-title {
+      height: auto;
+    }
+   }

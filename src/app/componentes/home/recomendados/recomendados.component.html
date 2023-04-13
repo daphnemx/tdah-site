@@ -1,0 +1,26 @@
+<h2>Recomendados</h2>
+
+<div class="articulo-row grid">
+  <ng-container *ngFor="let article of articlesContent">
+    <ng-container *ngIf="article.recomendado">
+      <div class="articulo-item g-col-12 g-col-lg-4 g-col-xl-4">
+        <app-articulo-recomendado
+          [imageMiniatura]="article.image"
+          [imageAlt]="'Image'"
+          [title]="article.title"
+          [paragraph]="article.description"
+          [linkUrl]="'/articulo/' + article.id"
+          [linkText]="'Saber más'"
+        >
+        </app-articulo-recomendado>
+        <button
+          type="button"
+          class="btn btn-link"
+          (click)="navigateToArticle(article)"
+        >
+          Saber más
+        </button>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

@@ -1,0 +1,10 @@
+.article-main-container {
+    margin-top: 3rem;
+}
+
+@media (max-width: 576px) {
+    .g-sm-start-0 {
+      margin-left: 0 !important;
+    }
+  }
+  

@@ -1,0 +1,21 @@
+.articulo-row {
+  margin-top: 1.5rem;
+  
+}
+
+.articulo-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.articulo-item button {
+  padding: 0;
+  color: #6eaab7;
+  text-decoration: none;
+}
+
+.articulo-item button:hover {
+  color: #4e7e89;
+  text-decoration: underline;
+}

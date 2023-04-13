@@ -1,14 +1,16 @@
-<main>
-  <ng-container *ngIf="showLanding">
-    <app-landing (buttonClicked)="onButtonClicked($event)"></app-landing>
-  </ng-container>
-  <section class="main-container" *ngIf="!showLanding">
-    <app-navbar></app-navbar>
-    <div class="grid">
-      <div class="header g-col-6 g-start-4">
-        <app-billboard></app-billboard>
-        <app-recomendados></app-recomendados>
-      </div>
+<ng-container *ngIf="router.url == '/'">
+  <app-landing></app-landing>
+</ng-container>
+<ng-container *ngIf="router.url !== '/'">
+  <header><app-navbar></app-navbar></header>
+
+  <main class="grid">
+    <div class="left-margin g-col-0 g-col-xxl-2"></div>
+    <div class="main-container g-col-12 g-col-xl-10 g-col-xxl-8">
+      <router-outlet></router-outlet>
+      <div class="push"></div>
     </div>
-  </section>
-</main>
+  </main>
+
+  <app-footer></app-footer>
+</ng-container>

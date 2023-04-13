@@ -1,0 +1,8 @@
+<ng-container *ngIf="article">
+  <div>
+    <h1>{{ article.title }}</h1>
+    <ng-container *ngFor="let paragraph of article.text.split('\n')">
+      <p>{{ paragraph }}</p>
+    </ng-container>
+  </div>
+</ng-container>
