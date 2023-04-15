@@ -16,9 +16,11 @@ import { ArticuloComponent } from './componentes/articulo/articulo.component';
 import { HomeModule } from './componentes/home/home.module';
 import { HomeComponent } from './componentes/home/home.component';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { HomeLandingComponent } from './componentes/home-landing/home-landing.component';
+import { HomeLandingModule } from './componentes/home-landing/home-landing.module';
 
 const appRoutes: Routes = [
-  { path: '', component: LandingComponent },
+  { path: '', component: HomeLandingComponent },
   { path: 'home', component: HomeComponent },
   //{ path: 'articulo', component: ArticuloComponent },
   { path: 'articulo/:id', component: ArticuloComponent },
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HomeModule,
+    HomeLandingModule,
     ArticuloModule,
     BrowserAnimationsModule,
     HttpClientModule,

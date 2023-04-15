@@ -1,0 +1,37 @@
+nav {
+  z-index: 1000;
+  padding: 1.5rem 3rem;
+  flex-grow: 1;
+}
+
+nav a {
+  font-size: 1.2rem;
+  padding: 0 3rem;
+  font-weight: 300;
+}
+
+.navbar-brand img {
+  height: 3.5rem;
+}
+
+.nav-item {
+  padding: 0 1.5rem;
+}
+
+.login-link {
+  color: #f57730;
+}
+
+.login-link:hover {
+  color: #f9975e;
+}
+
+@media (max-width: 767.98px) {
+  nav {
+    padding: 1rem;
+  }
+
+  nav a {
+    padding: 1rem;
+  }
+}
