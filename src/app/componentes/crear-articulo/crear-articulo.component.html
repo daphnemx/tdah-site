@@ -1,0 +1,104 @@
+<form (ngSubmit)="onSubmit()" #articuloForm="ngForm">
+  <div class="form-group">
+    <label for="titulo">Titulo</label>
+    <input
+      type="text"
+      class="form-control"
+      id="titulo"
+      name="titulo"
+      [(ngModel)]="titulo"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="titulo">Autor</label>
+    <input
+      type="text"
+      class="form-control"
+      id="autor"
+      name="autor"
+      [(ngModel)]="autor"
+      required
+    />
+  </div>
+  <div class="form-group">
+    <label for="descripcion">Descripción</label>
+    <textarea
+      class="form-control"
+      id="descripcion"
+      name="descripcion"
+      [(ngModel)]="descripcion"
+      rows="3"
+      required
+    ></textarea>
+  </div>
+  <div class="form-group">
+    <label for="tags"
+      >Etiquetas <strong>importante: separar con una coma " , "</strong></label
+    >
+    <input
+      type="text"
+      class="form-control"
+      id="tags"
+      name="tags"
+      [(ngModel)]="tags"
+    />
+  </div>
+  <div class="form-group">
+    <label for="contenido">Contenido</label>
+    <textarea
+      class="form-control"
+      id="contenido"
+      name="contenido"
+      [(ngModel)]="contenido"
+      rows="6"
+      required
+    ></textarea>
+  </div>
+  <div class="form-group">
+    <p><label for="documentos">Documentos</label></p>
+    <input
+      *ngIf="documentosSeleccionados.length === 0; else noDocs"
+      type="button"
+      onclick="document.getElementById('uploadFile').click();"
+      value="Subir doc"
+      class="btn btn-secondary"
+    />
+    <ng-template #noDocs
+      ><input
+        *ngIf="documentosSeleccionados.length > 0"
+        type="button"
+        onclick="document.getElementById('uploadFile').click();"
+        value="Subir otro doc"
+        class="btn btn-secondary"
+    /></ng-template>
+
+    <input
+      type="file"
+      (change)="onFileSelected($event)"
+      accept=".doc,.docx,.pdf,.xlsx,.xlsm"
+      multiple
+      label="Upload Documents"
+      id="uploadFile"
+      style="display: none"
+    />
+    <p *ngIf="uploadingFileRunning" style="color: blue">
+      subiendo: {{ fileUploadingProgress.toFixed(2) }}%
+    </p>
+
+    <p>{{ fileExtensionError }}</p>
+    <!--<p ngIf="uploading">Uploading</p>-->
+    <div *ngFor="let documento of documentosSeleccionados; let i = index">
+      <p>
+        {{ documento.fileName }}<button (click)="onBorrarDoc(i)">borrar</button>
+      </p>
+    </div>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="!articuloForm.form.valid"
+  >
+    Crear Articulo
+  </button>
+</form>

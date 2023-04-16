@@ -1,0 +1,174 @@
+import { Component, Injectable } from '@angular/core';
+import { ArticuloService } from '../../services/articulo.service';
+import { Articulo, Documentos } from '../../models/articulo';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { firstValueFrom } from 'rxjs';
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from 'firebase/storage';
+
+@Component({
+  selector: 'app-crear-articulo',
+  templateUrl: './crear-articulo.component.html',
+  styleUrls: ['./crear-articulo.component.css'],
+})
+@Injectable({
+  providedIn: 'root',
+})
+export class CrearArticuloComponent {
+  autor = '';
+  titulo = '';
+  contenido = '';
+  descripcion = '';
+  tags = '';
+  documentos = [];
+  documentosSeleccionados = [];
+  fileExtensionError: string = '';
+  storageDocs = getStorage();
+  fileUploadingProgress = 0;
+  uploadingFileRunning = false;
+
+  constructor(
+    private articuloService: ArticuloService,
+    private storage: AngularFireStorage
+  ) {}
+
+  onSubmit(): void {
+    if (
+      !this.autor ||
+      !this.titulo ||
+      !this.contenido ||
+      !this.descripcion ||
+      !this.tags
+    ) {
+      console.log('All fields are required');
+      return;
+    }
+
+    const articulo: Articulo = {
+      autor: this.autor,
+      titulo: this.titulo,
+      contenido: this.contenido,
+      descripcion: this.descripcion,
+      tags: this.tags.split(','),
+      fechaCreacion: new Date(),
+      documentos: this.documentosSeleccionados,
+      imagenes: [],
+      id: '',
+    };
+
+    this.articuloService
+      .addArticulo(articulo)
+      .then(() => {
+        console.log('Articulo added successfully');
+        // reset form fields
+        this.autor = '';
+        this.titulo = '';
+        this.contenido = '';
+        this.descripcion = '';
+        this.tags = '';
+        this.documentos = [];
+        this.documentosSeleccionados = [];
+      })
+      .catch((error) => {
+        console.error('Error adding articulo: ', error);
+      });
+  }
+
+  /*addNewLine() {
+    // Replace all occurrences of two consecutive line breaks with '\n\n'
+    this.contenido = this.contenido.replace(/\n\n/g, '\n');
+
+    // Replace all occurrences of a single line break with '\n'
+    this.contenido = this.contenido.replace(/\n/g, '\n\n');
+  }*/
+
+  onFileSelected(event: any): void {
+    const allowedTypes = [
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/pdf',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.ms-excel.sheet.macroEnabled.12',
+    ];
+    const file: File = event.target.files[0];
+    const fileName = file.name;
+    const filePath = `articulosDocs/${fileName}`;
+    const storageRef = ref(this.storageDocs, filePath);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    // Check if file type is pdf or doc
+    if (!allowedTypes.includes(file.type)) {
+      console.log(
+        'Invalid file type. Only .doc, .docx, .pdf, .xlsx and .xlsm files are allowed.'
+      );
+      this.fileExtensionError =
+        'Sólo se permiten archivos con las extensiones: .doc, .docx, .pdf, .xlsx, .xlsm';
+      return;
+    }
+
+    // Register three observers:
+    // 1. 'state_changed' observer, called any time the state changes
+    // 2. Error observer, called on failure
+    // 3. Completion observer, called on successful completion
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        this.fileUploadingProgress = progress;
+        console.log('Upload is ' + progress + '% done');
+        console.log('State ' + snapshot.state);
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            this.uploadingFileRunning = true;
+            break;
+        }
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+        console.log('Error uploading file: ', error);
+      },
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('File available at', downloadURL);
+          this.uploadingFileRunning = false;
+
+          const fileType = file.type;
+          const documentos: Documentos = {
+            fileName: fileName,
+            urlDoc: downloadURL,
+            fileType: fileType,
+          };
+          this.documentosSeleccionados.push(documentos);
+        });
+      }
+    );
+  }
+
+  onBorrarDoc(index: number): void {
+    console.log('onBorrarDoc called with index:', index);
+
+    const documento = this.documentosSeleccionados[index];
+    const fileRef = this.storage.ref(`articulosDocs/${documento.fileName}`);
+    firstValueFrom(fileRef.delete()).then(() => {
+      console.log('File deleted successfully:', documento.fileName);
+      this.documentosSeleccionados.splice(index, 1);
+      console.log(
+        'Document removed from the list:',
+        this.documentosSeleccionados
+      );
+    });
+  }
+}
