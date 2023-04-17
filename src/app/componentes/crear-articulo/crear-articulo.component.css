@@ -1,0 +1,14 @@
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 120px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.img-container img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}

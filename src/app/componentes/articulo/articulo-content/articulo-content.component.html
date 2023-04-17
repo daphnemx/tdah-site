@@ -1,5 +1,6 @@
 <ng-container *ngIf="article">
   <div>
+    <div class="art-image"></div>
     <h1>{{ article.title }}</h1>
     <ng-container *ngFor="let paragraph of article.text.split('\n')">
       <p>{{ paragraph }}</p>

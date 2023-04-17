@@ -15,6 +15,7 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
 //import { AngularFireStorage } from '@angular/fire/compat/storage';
 
+import { TopNavModule } from './componentes/top-nav/top-nav.module';
 import { ArticuloModule } from './componentes/articulo/articulo.module';
 import { ArticuloComponent } from './componentes/articulo/articulo.component';
 import { HomeModule } from './componentes/home/home.module';
@@ -48,6 +49,7 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase),
     //AngularFireStorage,
     FormsModule,
+    TopNavModule,
     HomeModule,
     HomeLandingModule,
     ArticuloModule,

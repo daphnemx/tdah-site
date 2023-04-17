@@ -1,6 +1,7 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, SecurityContext } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ArticuloService } from '../../services/articulo.service';
-import { Articulo, Documentos } from '../../models/articulo';
+import { Articulo, Documentos, Imagenes } from '../../models/articulo';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { firstValueFrom } from 'rxjs';
 import {
@@ -25,15 +26,19 @@ export class CrearArticuloComponent {
   descripcion = '';
   tags = '';
   documentos = [];
+  imagenes = [];
   documentosSeleccionados = [];
-  fileExtensionError: string = '';
+  fileExtensionError = '';
+  imageTypeError = '';
   storageDocs = getStorage();
   fileUploadingProgress = 0;
   uploadingFileRunning = false;
+  uploadingImageRunning = false;
 
   constructor(
     private articuloService: ArticuloService,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    private sanitizer: DomSanitizer
   ) {}
 
   onSubmit(): void {
@@ -51,7 +56,7 @@ export class CrearArticuloComponent {
     const articulo: Articulo = {
       autor: this.autor,
       titulo: this.titulo,
-      contenido: this.contenido,
+      contenido: this.sanitizeContenido(this.contenido),
       descripcion: this.descripcion,
       tags: this.tags.split(','),
       fechaCreacion: new Date(),
@@ -78,13 +83,9 @@ export class CrearArticuloComponent {
       });
   }
 
-  /*addNewLine() {
-    // Replace all occurrences of two consecutive line breaks with '\n\n'
-    this.contenido = this.contenido.replace(/\n\n/g, '\n');
-
-    // Replace all occurrences of a single line break with '\n'
-    this.contenido = this.contenido.replace(/\n/g, '\n\n');
-  }*/
+  sanitizeContenido(contenido: string): string {
+    return this.sanitizer.sanitize(SecurityContext.HTML, contenido);
+  }
 
   onFileSelected(event: any): void {
     const allowedTypes = [
@@ -165,10 +166,84 @@ export class CrearArticuloComponent {
     firstValueFrom(fileRef.delete()).then(() => {
       console.log('File deleted successfully:', documento.fileName);
       this.documentosSeleccionados.splice(index, 1);
+
       console.log(
         'Document removed from the list:',
         this.documentosSeleccionados
       );
+    });
+  }
+
+  onImageSelected(event: any): void {
+    const allowedTypes = ['image/jpeg', 'image/png'];
+    const file: File = event.target.files[0];
+    const fileName = file.name;
+    const filePath = `articulosImagenes/${fileName}`;
+    const storageRef = ref(this.storageDocs, filePath);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+
+    // Check if file type is jpg or png
+    if (!allowedTypes.includes(file.type)) {
+      this.imageTypeError = 'Solo se permiten .jpg y .png';
+      return;
+    }
+
+    // Register three observers:
+    // 1. 'state_changed' observer, called any time the state changes
+    // 2. Error observer, called on failure
+    // 3. Completion observer, called on successful completion
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        // Observe state change events such as progress, pause, and resume
+        // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+        const progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        this.fileUploadingProgress = progress;
+        console.log('Upload is ' + progress + '% done');
+        console.log('State ' + snapshot.state);
+        switch (snapshot.state) {
+          case 'paused':
+            console.log('Upload is paused');
+            break;
+          case 'running':
+            console.log('Upload is running');
+            this.uploadingImageRunning = true;
+            break;
+        }
+      },
+      (error) => {
+        // Handle unsuccessful uploads
+        console.log('Error uploading file: ', error);
+      },
+      () => {
+        // Handle successful uploads on complete
+        // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          console.log('Image available at', downloadURL);
+          this.uploadingImageRunning = false;
+
+          const imageUrl = downloadURL;
+          const image: Imagenes = {
+            imgUrl: downloadURL,
+            nombreImg: fileName,
+          };
+          this.imagenes.push(image);
+          console.log(this.imagenes);
+        });
+      }
+    );
+  }
+
+  onBorrarImg(index: number): void {
+    console.log('onBorrarDoc called with index:', index);
+    const imagen = this.imagenes[index];
+    const fileRef = this.storage.ref(`articulosImagenes/${imagen.nombreImg}`);
+    firstValueFrom(fileRef.delete()).then(() => {
+      console.log('File deleted successfully:', imagen.nombreImg);
+      this.imagenes.splice(index, 1);
+
+      console.log('Document removed from the list:', this.imagenes);
     });
   }
 }

@@ -1,9 +1,8 @@
+<header><app-top-nav class="nav"></app-top-nav></header>
 <ng-container *ngIf="router.url == '/'">
   <app-home-landing></app-home-landing>
 </ng-container>
 <ng-container *ngIf="router.url !== '/'">
-  <header><app-navbar></app-navbar></header>
-
   <main class="grid">
     <div class="left-margin g-col-0 g-col-xxl-2"></div>
     <div class="main-container g-col-12 g-col-xl-10 g-col-xxl-8">

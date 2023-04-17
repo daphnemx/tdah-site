@@ -17,8 +17,7 @@ export interface Documentos {
 }
 
 export interface Imagenes {
-  alt: string;
   imgUrl: string;
   nombreImg: string;
-  portada: boolean;
+  //portada: boolean;
 }

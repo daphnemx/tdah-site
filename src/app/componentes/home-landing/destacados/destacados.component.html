@@ -1,0 +1,10 @@
+<h2>Listado de Artículos</h2>
+<div *ngFor="let articulo of articulos">
+  <div>
+    {{ articulo.titulo }}
+  </div>
+  <div>
+    {{ articulo.descripcion }}
+  </div>
+  <div [innerHTML]="articulo.contenido"></div>
+</div>

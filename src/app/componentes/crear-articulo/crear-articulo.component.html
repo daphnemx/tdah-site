@@ -56,7 +56,7 @@
     ></textarea>
   </div>
   <div class="form-group">
-    <p><label for="documentos">Documentos</label></p>
+    <div><label for="uploadFile">Documentos</label></div>
     <input
       *ngIf="documentosSeleccionados.length === 0; else noDocs"
       type="button"
@@ -90,8 +90,41 @@
     <!--<p ngIf="uploading">Uploading</p>-->
     <div *ngFor="let documento of documentosSeleccionados; let i = index">
       <p>
-        {{ documento.fileName }}<button (click)="onBorrarDoc(i)">borrar</button>
+        {{ documento.fileName
+        }}<button class="btn btn-outline-danger" (click)="onBorrarDoc(i)">
+          borrar
+        </button>
       </p>
+    </div>
+    <div>
+      <input
+        type="button"
+        onclick="document.getElementById('uploadImg').click();"
+        value="Subir imagen"
+        class="btn btn-secondary"
+        [disabled]="imagenes.length > 0"
+      />
+
+      <input
+        type="file"
+        accept="image/jpeg, image/png"
+        id="uploadImg"
+        style="display: none"
+        (change)="onImageSelected($event)"
+      />
+      <p *ngIf="uploadingImageRunning" style="color: blue">
+        subiendo: {{ fileUploadingProgress.toFixed(2) }}%
+      </p>
+
+      <p>{{ imageTypeError }}</p>
+      <div *ngFor="let imagen of imagenes; let i = index">
+        <div class="img-container">
+          <img src="{{ imagen.imgUrl }}" />
+        </div>
+        <button class="btn btn-outline-danger" (click)="onBorrarImg(i)">
+          borrar
+        </button>
+      </div>
     </div>
   </div>
   <button

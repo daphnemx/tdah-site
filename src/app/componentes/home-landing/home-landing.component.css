@@ -7,11 +7,6 @@
   align-items: center;
 }
 
-.nav {
-  align-self: flex-start;
-  flex-grow: 1;
-}
-
 .background-image {
   position: absolute;
   top: 0;
