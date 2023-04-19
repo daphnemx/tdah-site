@@ -61,14 +61,14 @@ export class CrearArticuloComponent {
       tags: this.tags.split(','),
       fechaCreacion: new Date(),
       documentos: this.documentosSeleccionados,
-      imagenes: [],
+      imagenes: this.imagenes,
       id: '',
     };
 
     this.articuloService
       .addArticulo(articulo)
       .then(() => {
-        console.log('Articulo added successfully');
+        //console.log('Articulo added successfully');
         // reset form fields
         this.autor = '';
         this.titulo = '';
@@ -77,6 +77,7 @@ export class CrearArticuloComponent {
         this.tags = '';
         this.documentos = [];
         this.documentosSeleccionados = [];
+        this.imagenes = [];
       })
       .catch((error) => {
         console.error('Error adding articulo: ', error);
@@ -103,9 +104,6 @@ export class CrearArticuloComponent {
 
     // Check if file type is pdf or doc
     if (!allowedTypes.includes(file.type)) {
-      console.log(
-        'Invalid file type. Only .doc, .docx, .pdf, .xlsx and .xlsm files are allowed.'
-      );
       this.fileExtensionError =
         'Sólo se permiten archivos con las extensiones: .doc, .docx, .pdf, .xlsx, .xlsm';
       return;

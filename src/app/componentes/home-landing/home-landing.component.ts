@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ArticuloService } from '../../services/articulo.service';
+import { Articulo } from '../../models/articulo';
 
 @Component({
   selector: 'app-home-landing',
@@ -6,7 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home-landing.component.css'],
 })
 export class HomeLandingComponent implements OnInit {
-  constructor() {}
+  articulos: Articulo[] = [];
 
-  ngOnInit(): void {}
+  constructor(private articuloService: ArticuloService) {}
+
+  ngOnInit(): void {
+    this.getArticulos();
+  }
+
+  async getArticulos(): Promise<void> {
+    this.articulos = await this.articuloService.getArticulos();
+    console.log(this.articulos);
+  }
 }

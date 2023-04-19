@@ -1,137 +1,140 @@
-<form (ngSubmit)="onSubmit()" #articuloForm="ngForm">
-  <div class="form-group">
-    <label for="titulo">Titulo</label>
-    <input
-      type="text"
-      class="form-control"
-      id="titulo"
-      name="titulo"
-      [(ngModel)]="titulo"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label for="titulo">Autor</label>
-    <input
-      type="text"
-      class="form-control"
-      id="autor"
-      name="autor"
-      [(ngModel)]="autor"
-      required
-    />
-  </div>
-  <div class="form-group">
-    <label for="descripcion">Descripción</label>
-    <textarea
-      class="form-control"
-      id="descripcion"
-      name="descripcion"
-      [(ngModel)]="descripcion"
-      rows="3"
-      required
-    ></textarea>
-  </div>
-  <div class="form-group">
-    <label for="tags"
-      >Etiquetas <strong>importante: separar con una coma " , "</strong></label
-    >
-    <input
-      type="text"
-      class="form-control"
-      id="tags"
-      name="tags"
-      [(ngModel)]="tags"
-    />
-  </div>
-  <div class="form-group">
-    <label for="contenido">Contenido</label>
-    <textarea
-      class="form-control"
-      id="contenido"
-      name="contenido"
-      [(ngModel)]="contenido"
-      rows="6"
-      required
-    ></textarea>
-  </div>
-  <div class="form-group">
-    <div><label for="uploadFile">Documentos</label></div>
-    <input
-      *ngIf="documentosSeleccionados.length === 0; else noDocs"
-      type="button"
-      onclick="document.getElementById('uploadFile').click();"
-      value="Subir doc"
-      class="btn btn-secondary"
-    />
-    <ng-template #noDocs
-      ><input
-        *ngIf="documentosSeleccionados.length > 0"
+<section>
+  <h2>Subir un artículo</h2>
+  <form (ngSubmit)="onSubmit()" #articuloForm="ngForm">
+    <div class="form-group">
+      <label for="titulo">Titulo</label>
+      <input
+        type="text"
+        class="form-control"
+        id="titulo"
+        name="titulo"
+        [(ngModel)]="titulo"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="titulo">Autor</label>
+      <input
+        type="text"
+        class="form-control"
+        id="autor"
+        name="autor"
+        [(ngModel)]="autor"
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="descripcion">Descripción</label>
+      <textarea
+        class="form-control"
+        id="descripcion"
+        name="descripcion"
+        [(ngModel)]="descripcion"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <label for="tags"
+        >Etiquetas
+        <strong>importante: separar con una coma " , "</strong></label
+      >
+      <input
+        type="text"
+        class="form-control"
+        id="tags"
+        name="tags"
+        [(ngModel)]="tags"
+      />
+    </div>
+    <div class="form-group">
+      <label for="contenido">Contenido</label>
+      <textarea
+        class="form-control"
+        id="contenido"
+        name="contenido"
+        [(ngModel)]="contenido"
+        rows="6"
+        required
+      ></textarea>
+    </div>
+    <div class="form-group">
+      <div><label for="uploadFile">Documentos</label></div>
+      <input
+        *ngIf="documentosSeleccionados.length === 0; else noDocs"
         type="button"
         onclick="document.getElementById('uploadFile').click();"
-        value="Subir otro doc"
+        value="Subir doc"
         class="btn btn-secondary"
-    /></ng-template>
-
-    <input
-      type="file"
-      (change)="onFileSelected($event)"
-      accept=".doc,.docx,.pdf,.xlsx,.xlsm"
-      multiple
-      label="Upload Documents"
-      id="uploadFile"
-      style="display: none"
-    />
-    <p *ngIf="uploadingFileRunning" style="color: blue">
-      subiendo: {{ fileUploadingProgress.toFixed(2) }}%
-    </p>
-
-    <p>{{ fileExtensionError }}</p>
-    <!--<p ngIf="uploading">Uploading</p>-->
-    <div *ngFor="let documento of documentosSeleccionados; let i = index">
-      <p>
-        {{ documento.fileName
-        }}<button class="btn btn-outline-danger" (click)="onBorrarDoc(i)">
-          borrar
-        </button>
-      </p>
-    </div>
-    <div>
-      <input
-        type="button"
-        onclick="document.getElementById('uploadImg').click();"
-        value="Subir imagen"
-        class="btn btn-secondary"
-        [disabled]="imagenes.length > 0"
       />
+      <ng-template #noDocs
+        ><input
+          *ngIf="documentosSeleccionados.length > 0"
+          type="button"
+          onclick="document.getElementById('uploadFile').click();"
+          value="Subir otro doc"
+          class="btn btn-secondary"
+      /></ng-template>
 
       <input
         type="file"
-        accept="image/jpeg, image/png"
-        id="uploadImg"
+        (change)="onFileSelected($event)"
+        accept=".doc,.docx,.pdf,.xlsx,.xlsm"
+        multiple
+        label="Upload Documents"
+        id="uploadFile"
         style="display: none"
-        (change)="onImageSelected($event)"
       />
-      <p *ngIf="uploadingImageRunning" style="color: blue">
+      <p *ngIf="uploadingFileRunning" style="color: blue">
         subiendo: {{ fileUploadingProgress.toFixed(2) }}%
       </p>
 
-      <p>{{ imageTypeError }}</p>
-      <div *ngFor="let imagen of imagenes; let i = index">
-        <div class="img-container">
-          <img src="{{ imagen.imgUrl }}" />
+      <p>{{ fileExtensionError }}</p>
+      <!--<p ngIf="uploading">Uploading</p>-->
+      <div *ngFor="let documento of documentosSeleccionados; let i = index">
+        <p>
+          {{ documento.fileName
+          }}<button class="btn btn-outline-danger" (click)="onBorrarDoc(i)">
+            borrar
+          </button>
+        </p>
+      </div>
+      <div>
+        <input
+          type="button"
+          onclick="document.getElementById('uploadImg').click();"
+          value="Subir imagen"
+          class="btn btn-secondary"
+        />
+
+        <input
+          type="file"
+          accept="image/jpeg, image/png"
+          id="uploadImg"
+          style="display: none"
+          (change)="onImageSelected($event)"
+        />
+        <p *ngIf="uploadingImageRunning" style="color: blue">
+          subiendo: {{ fileUploadingProgress.toFixed(2) }}%
+        </p>
+
+        <p>{{ imageTypeError }}</p>
+        <div *ngFor="let imagen of imagenes; let i = index">
+          <div class="img-container">
+            <img src="{{ imagen.imgUrl }}" />
+          </div>
+          <button class="btn btn-outline-danger" (click)="onBorrarImg(i)">
+            borrar
+          </button>
         </div>
-        <button class="btn btn-outline-danger" (click)="onBorrarImg(i)">
-          borrar
-        </button>
       </div>
     </div>
-  </div>
-  <button
-    type="submit"
-    class="btn btn-primary"
-    [disabled]="!articuloForm.form.valid"
-  >
-    Crear Articulo
-  </button>
-</form>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="!articuloForm.form.valid"
+    >
+      Crear Articulo
+    </button>
+  </form>
+</section>

@@ -6,14 +6,15 @@ main {
   margin-bottom: -10rem;
 }
 
-.main-container {
+.center-container {
   background: #ffff;
   padding: 0 5rem;
   min-height: 100%;
+  padding-top: 8rem;
 }
 
 .push {
-  height: 10rem;
+  height: 8rem;
 }
 
 header {
@@ -21,11 +22,16 @@ header {
   position: absolute;
   display: flex;
   width: 100%;
+  height: 10rem;
 }
 
 .nav {
   align-self: flex-start;
   flex-grow: 1;
+}
+
+.nav-background {
+  background-color: #000142;
 }
 
 a {
@@ -39,7 +45,7 @@ a {
 }
 
 @media (max-width: 768px) {
-  .main-container {
-    padding: 0 1rem;
+  .center-container {
+    padding: 8rem 1rem;
   }
 }

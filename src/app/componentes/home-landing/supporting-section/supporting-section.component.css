@@ -21,7 +21,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
-  background-image: url("../../../../assets/img/nino-mind.png");
+  /*background-image: url("../../../../assets/img/nino-mind.png");*/
   margin-bottom: -10rem;
   filter: grayscale(100%);
   -webkit-filter: grayscale(100%);

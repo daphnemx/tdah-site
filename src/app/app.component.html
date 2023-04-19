@@ -1,15 +1,18 @@
-<header><app-top-nav class="nav"></app-top-nav></header>
+<header>
+  <app-top-nav
+    [ngClass]="{ nav: true, 'nav-background': router.url !== '/' }"
+  ></app-top-nav>
+</header>
 <ng-container *ngIf="router.url == '/'">
   <app-home-landing></app-home-landing>
 </ng-container>
 <ng-container *ngIf="router.url !== '/'">
-  <main class="grid">
+  <main class="grid main-container">
     <div class="left-margin g-col-0 g-col-xxl-2"></div>
-    <div class="main-container g-col-12 g-col-xl-10 g-col-xxl-8">
+    <div class="center-container g-col-12 g-col-xl-10 g-col-xxl-8">
       <router-outlet></router-outlet>
       <div class="push"></div>
     </div>
   </main>
-
-  <app-footer></app-footer>
 </ng-container>
+<app-footer></app-footer>

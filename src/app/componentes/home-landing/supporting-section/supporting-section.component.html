@@ -1,13 +1,14 @@
 <div class="supporting-section-container">
   <div>
-    <h2>Un subtítulo</h2>
+    <h2>{{ title }}</h2>
     <p>
-      Attention-deficit/hyperactivity disorder (ADHD) is a behavior disorder.
-      It's also called attention deficit disorder. It's often first diagnosed in
-      childhood. There are 3 types:
+      {{ description }}
     </p>
   </div>
   <div>
-    <div class="background-image"></div>
+    <div
+      [style.background-image]="'url(' + backgroundImageUrl + ')'"
+      class="background-image"
+    ></div>
   </div>
 </div>

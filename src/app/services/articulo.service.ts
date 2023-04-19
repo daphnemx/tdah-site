@@ -4,8 +4,10 @@ import {
   collection,
   addDoc,
   getDocs,
+  setDoc,
 } from '@angular/fire/firestore';
 import { Articulo } from '../models/articulo';
+import { deleteDoc, doc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +35,25 @@ export class ArticuloService {
       articulos.push(articulo);
     });
     return articulos;
+  }
+
+  async editArticulo(articulo: Articulo): Promise<void> {
+    const articuloRef = collection(this.firestore, 'articulos');
+    try {
+      await setDoc(doc(articuloRef, articulo.id), articulo);
+      console.log('Articulo edited successfully');
+    } catch (error) {
+      console.error('Error editing articulo: ', error);
+    }
+  }
+
+  async deleteArticulo(id: string): Promise<void> {
+    const articuloRef = doc(collection(this.firestore, 'articulos'), id);
+    try {
+      await deleteDoc(articuloRef);
+      console.log('Articulo deleted successfully');
+    } catch (error) {
+      console.error('Error deleting articulo: ', error);
+    }
   }
 }
