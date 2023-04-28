@@ -1,0 +1,48 @@
+import { Component, OnInit } from '@angular/core';
+import { UserService } from '../../../services/user.service';
+import { Router } from '@angular/router';
+import { User } from 'firebase/auth';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
+})
+export class LoginComponent implements OnInit {
+  email: string;
+  password: string;
+  errorMessage: string;
+
+  loggedIn = false;
+  userEmail: string | undefined;
+
+  constructor(private userService: UserService, private router: Router) {}
+
+  ngOnInit(): void {
+    /* this.userService.auth.onAuthStateChanged((user: User | null) => {
+      if (user) {
+        this.loggedIn = true;
+        this.userEmail = user.email;
+        console.log(this.userEmail);
+      } else {
+        this.loggedIn = false;
+        this.userEmail = undefined;
+      }
+    });*/
+  }
+
+  async login() {
+    try {
+      const response = await this.userService.login({
+        email: this.email,
+        password: this.password,
+      });
+      console.log(response); // Log the response object to the console
+      // Login successful
+      this.router.navigate(['/']); // Redirect to the home page
+    } catch (error) {
+      console.log(error);
+      // Login failed, handle the error
+    }
+  }
+}

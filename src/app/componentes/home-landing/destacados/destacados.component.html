@@ -1,10 +1,15 @@
-<h2>Listado de Artículos</h2>
-<div *ngFor="let articulo of articulos">
-  <div>
-    {{ articulo.titulo }}
+<div class="destacados-container grid">
+  <div class="g-col-2"></div>
+  <div class="g-col-8">
+    <h2>Listado de Artículos</h2>
+    <div *ngFor="let articulo of articulos">
+      <div>
+        {{ articulo.titulo }}
+      </div>
+      <div>
+        {{ articulo.descripcion }}
+      </div>
+      <div [innerHTML]="articulo.contenido"></div>
+    </div>
   </div>
-  <div>
-    {{ articulo.descripcion }}
-  </div>
-  <div [innerHTML]="articulo.contenido"></div>
 </div>

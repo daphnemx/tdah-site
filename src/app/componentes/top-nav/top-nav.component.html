@@ -27,8 +27,16 @@
       <li class="nav-item">
         <a class="nav-link" href="#">Padres</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link login-link" href="#">Log in</a>
+      <li *ngIf="loggedIn" class="nav-item">
+        <div class="bienvenida">
+          <p>Hola,  {{ userEmail }}!</p>
+          <button class="nav-link btn btn-link logout-btn" (click)="logout()">
+            Logout
+          </button>
+        </div>
+      </li>
+      <li *ngIf="!loggedIn" class="nav-item">
+        <a class="nav-link login-link" href="login">Log in</a>
       </li>
     </ul>
   </div>

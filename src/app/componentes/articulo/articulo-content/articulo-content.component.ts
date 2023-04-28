@@ -1,30 +1,38 @@
 import { Component, OnInit, Input } from '@angular/core';
-import articleContent from '../../../../assets/contenido/articulos.json';
 import { ActivatedRoute } from '@angular/router';
-import { ArticleService } from '../../../services/article.service';
-import { Article } from '../../../models/article';
+import { ArticuloService } from '../../../services/articulo.service';
+import { Articulo } from '../../../models/articulo';
+
 
 @Component({
   selector: 'app-articulo-content',
   templateUrl: './articulo-content.component.html',
-  styleUrls: ['./articulo-content.component.css'],
-  providers: [ArticleService],
+  styleUrls: ['./articulo-content.component.scss', '../articulo.component.css'],
 })
 export class ArticuloContentComponent implements OnInit {
-  articleId: number;
-  article: Article;
+  articulo: Articulo;
+  imagenPortada: any;
 
   constructor(
-    private articleService: ArticleService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private articuloService: ArticuloService
   ) {}
 
-  ngOnInit(): void {
-    this.articleId = parseInt(this.route.snapshot.paramMap.get('id'), 10);
-    this.articleService.getArticleById(this.articleId).subscribe((article) => {
-      this.article = article;
-      console.log('Fetched article content:', article);
-      // Do something with the fetched article content
-    });
+  async ngOnInit(): Promise<void> {
+
+    this.articulo = await this.articuloService.getArticulo(this.route.snapshot.paramMap.get('id'));
+    if (this.articulo) {
+      console.log(this.articulo);
+    } else {
+      console.error('Articulo not found');
+    }
+
+    console.log(this.articulo.imagenes[0].imgUrl)
+
+    if (this.articulo) {
+      this.imagenPortada=this.articulo.imagenes.find(img => img.imgPortada).imgUrl;
+      console.log(this.imagenPortada);
+    }
+
   }
 }

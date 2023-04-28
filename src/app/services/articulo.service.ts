@@ -7,7 +7,7 @@ import {
   setDoc,
 } from '@angular/fire/firestore';
 import { Articulo } from '../models/articulo';
-import { deleteDoc, doc } from 'firebase/firestore';
+import { deleteDoc, doc, getDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -34,8 +34,27 @@ export class ArticuloService {
       articulo.id = doc.id;
       articulos.push(articulo);
     });
-    return articulos;
+    return articulos; 
   }
+
+  async getArticulo(id: string): Promise<Articulo | null> {
+    if (!id) {
+      console.error('Invalid ID: ', id);
+      return null;
+    }
+    const articuloRef = doc(collection(this.firestore, 'articulos'), id);
+    const articuloSnapshot = await getDoc(articuloRef);
+    if (articuloSnapshot.exists()) {
+      const articulo = articuloSnapshot.data() as Articulo;
+      articulo.id = articuloSnapshot.id;
+      return articulo;
+    } else {
+      console.error('Articulo not found: ', id);
+      return null;
+    }
+  }
+  
+  
 
   async editArticulo(articulo: Articulo): Promise<void> {
     const articuloRef = collection(this.firestore, 'articulos');

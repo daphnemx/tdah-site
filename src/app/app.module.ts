@@ -6,31 +6,36 @@ import { AppComponent } from './app.component';
 import { ServerComponent } from './server/server.component';
 import { ServersComponent } from './servers/servers.component';
 import { HttpClientModule } from '@angular/common/http';
-import { NavbarComponent } from './componentes/navbar/navbar.component';
-import { LandingComponent } from './componentes/landing/landing.component';
+import { FormsModule } from '@angular/forms';
 
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire/compat';
-//import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 import { TopNavModule } from './componentes/top-nav/top-nav.module';
-import { ArticuloModule } from './componentes/articulo/articulo.module';
-import { ArticuloComponent } from './componentes/articulo/articulo.component';
 import { HomeModule } from './componentes/home/home.module';
-import { HomeComponent } from './componentes/home/home.component';
+import { HomeLandingModule } from './componentes/home-landing/home-landing.module';
+import { ArticuloModule } from './componentes/articulo/articulo.module';
+import { AutenticacionModule } from './componentes/autenticacion/autenticacion.module';
+import { ArticuloComponent } from './componentes/articulo/articulo.component';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HomeLandingComponent } from './componentes/home-landing/home-landing.component';
-import { HomeLandingModule } from './componentes/home-landing/home-landing.module';
 import { CrearArticuloComponent } from './componentes/crear-articulo/crear-articulo.component';
-import { FormsModule } from '@angular/forms';
+import { RegistrarUserComponent } from './componentes/autenticacion/registrar-user/registrar-user.component';
+import { LoginComponent } from './componentes/autenticacion/login/login.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeLandingComponent },
-  { path: 'home', component: HomeComponent },
-  //{ path: 'articulo', component: ArticuloComponent },
-  { path: 'articulo/:id', component: ArticuloComponent },
+  { path: 'signup', component: RegistrarUserComponent },
+  { path: 'login', component: LoginComponent },
+  {
+    path: 'articulo/:id',
+    component: ArticuloComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['login'])),
+  },
   { path: 'crear-articulo', component: CrearArticuloComponent },
 ];
 
@@ -39,8 +44,6 @@ const appRoutes: Routes = [
     AppComponent,
     ServerComponent,
     ServersComponent,
-    NavbarComponent,
-    LandingComponent,
     FooterComponent,
     CrearArticuloComponent,
   ],
@@ -53,11 +56,13 @@ const appRoutes: Routes = [
     HomeModule,
     HomeLandingModule,
     ArticuloModule,
+    AutenticacionModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
+    provideAuth(() => getAuth()),
   ],
   exports: [RouterModule],
   providers: [],

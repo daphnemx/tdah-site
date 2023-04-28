@@ -1,13 +1,18 @@
 <app-billboard></app-billboard>
 <section class="grid">
-  <div class="g-col-2">.g-col-2</div>
+  <div class="g-col-2"></div>
   <div class="g-col-8">
-    <app-supporting-section></app-supporting-section>
+    <ng-container *ngFor="let articulo of articulos">
+      <app-supporting-section
+        *ngIf="articulo.artPrincipal"
+        [title]="articulo.titulo"
+        [description]="articulo.descripcion"
+        [backgroundImageUrl]="articulo.imagenes[1].imgUrl"
+        [articuloID]="articulo.id"
+      >
+      </app-supporting-section>
+    </ng-container>
   </div>
-  <div class="g-col-2">.g-col-2</div>
-  <div class="g-col-2">.g-col-2</div>
-  <div class="g-col-8">
-    <app-destacados></app-destacados>
-  </div>
-  <div class="g-col-2">.g-col-2</div>
+  <div class="g-col-2"></div>
 </section>
+<app-destacados></app-destacados>

@@ -25,6 +25,18 @@ nav a {
 .login-link:hover {
   color: #f9975e;
 }
+.bienvenida {
+  color:#1bb1c6;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+}
+.bienvenida button{
+  margin-top: -1.25rem;
+  padding: 0;
+  color:#f57730;
+  font-size:15px;
+}
 
 @media (max-width: 767.98px) {
   nav {

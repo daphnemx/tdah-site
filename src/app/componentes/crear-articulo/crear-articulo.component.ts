@@ -225,6 +225,7 @@ export class CrearArticuloComponent {
           const image: Imagenes = {
             imgUrl: downloadURL,
             nombreImg: fileName,
+            imgPortada:true,
           };
           this.imagenes.push(image);
           console.log(this.imagenes);

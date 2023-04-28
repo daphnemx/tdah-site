@@ -19,5 +19,5 @@ export interface Documentos {
 export interface Imagenes {
   imgUrl: string;
   nombreImg: string;
-  //portada: boolean;
+  imgPortada: boolean;
 }
