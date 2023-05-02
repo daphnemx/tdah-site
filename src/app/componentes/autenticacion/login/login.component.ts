@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
       // Login successful
       this.router.navigate(['/']); // Redirect to the home page
     } catch (error) {
-      console.log(error);
+      this.errorMessage = error;
+      console.log(this.errorMessage);
       // Login failed, handle the error
     }
   }

@@ -1,32 +1,53 @@
-<div class="crear-cuenta container mb-3">
-  <h1 style="margin-bottom: 2rem">Crea una cuenta</h1>
-  <div style="max-width: 600px">
-    <label for="exampleFormControlInput1" class="form-label">Email</label>
-    <input
-      type="email"
-      class="form-control"
-      id="exampleFormControlInput1"
-      [(ngModel)]="email"
-      name="email"
-      required
-    />
-  </div>
-  <div class="mb-3" style="max-width: 600px">
-    <label for="inputPassword5" class="form-label">Password</label>
-    <input
-      type="password"
-      id="inputPassword5"
-      class="form-control"
-      aria-labelledby="passwordHelpBlock"
-      [(ngModel)]="password"
-      name="password"
-      required
-    />
-    <div id="passwordHelpBlock" class="form-text">
-      Tu password debe ser de 6 caracteres como mínimo.
+<ng-template #createAccount>
+  <div class="crear-cuenta container mb-3">
+    <h1 style="margin-bottom: 2rem">Crea una cuenta</h1>
+    <div style="max-width: 600px">
+      <label for="exampleFormControlInput1" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="exampleFormControlInput1"
+        [(ngModel)]="email"
+        name="email"
+        required
+      />
     </div>
+    <div class="mb-3" style="max-width: 600px">
+      <label for="inputPassword5" class="form-label">Password</label>
+      <input
+        type="password"
+        id="inputPassword5"
+        class="form-control"
+        aria-labelledby="passwordHelpBlock"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
+      <div id="passwordHelpBlock" class="form-text">
+        Tu password debe ser de 6 caracteres como mínimo.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-3" (click)="register()">
+      De acuerdo, regístrame!
+    </button>
+    <div
+      class="alert alert-danger"
+      role="alert"
+      *ngIf="errorMessage"
+      [innerHtml]="errorMessage"
+    ></div>
   </div>
-  <button type="submit" class="btn btn-primary mb-3" (click)="register()">
-    De acuerdo, regístrame!
-  </button>
-</div>
+</ng-template>
+
+<ng-template #welcomeMessage>
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Bienvenido!</h4>
+    <p>Has creado tu cuenta con éxito</p>
+    <hr />
+    <p class="mb-0">Ya puedes disfrutar el contenido exclusivo.</p>
+  </div>
+</ng-template>
+
+<ng-container
+  *ngTemplateOutlet="logged ? welcomeMessage : createAccount"
+></ng-container>

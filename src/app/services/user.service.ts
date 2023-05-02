@@ -3,8 +3,6 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  getAuth,
-  onAuthStateChanged,
 } from '@angular/fire/auth';
 
 @Injectable({

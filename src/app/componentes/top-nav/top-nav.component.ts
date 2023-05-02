@@ -19,7 +19,7 @@ export class TopNavComponent implements OnInit {
       if (user) {
         this.loggedIn = true;
         this.userEmail = user.email;
-        console.log(this.userEmail);
+        //console.log(this.userEmail);
       } else {
         this.loggedIn = false;
         this.userEmail = undefined;
