@@ -1,15 +1,14 @@
-<div class="destacados-container grid">
+<div class="destacados-container grid" id="destacados">
   <div class="g-col-2"></div>
   <div class="g-col-8">
-    <h2>Listado de Artículos</h2>
+    <h2>
+      Artículos sobre el Transtorno de Déficit de Atención con Hiperactividad
+      TDAH
+    </h2>
     <div *ngFor="let articulo of articulos">
-      <div>
+      <h5>
         {{ articulo.titulo }}
-      </div>
-      <div>
-        {{ articulo.descripcion }}
-      </div>
-      <div [innerHTML]="articulo.contenido"></div>
+      </h5>
     </div>
   </div>
 </div>

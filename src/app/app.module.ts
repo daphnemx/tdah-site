@@ -36,7 +36,11 @@ const appRoutes: Routes = [
     component: ArticuloComponent,
     ...canActivate(() => redirectUnauthorizedTo(['login'])),
   },
-  { path: 'crear-articulo', component: CrearArticuloComponent },
+  {
+    path: 'crear-articulo',
+    component: CrearArticuloComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['login'])),
+  },
 ];
 
 @NgModule({
