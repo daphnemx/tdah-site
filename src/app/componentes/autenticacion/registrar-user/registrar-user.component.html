@@ -36,6 +36,20 @@
       *ngIf="errorMessage"
       [innerHtml]="errorMessage"
     ></div>
+    <div>
+      <button
+        type="button"
+        class="btn btn-outline-secondary google-btn"
+        (click)="registerGoogle()"
+      >
+        <img
+          width="16"
+          alt='Google "G" Logo'
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+        />
+        Registrarme con Google
+      </button>
+    </div>
   </div>
 </ng-template>
 

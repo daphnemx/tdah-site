@@ -1,0 +1,10 @@
+.google-btn{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    
+}
+
+.google-btn img{
+   margin-bottom: -.25rem;
+}

@@ -36,6 +36,25 @@ export class RegistrarUserComponent implements OnInit {
       });
   }
 
+  registerGoogle() {
+    this.userService
+      .loginconGoogle()
+      .then((response) => {
+        console.log('User registered successfully!', response);
+        this.errorMessage = null; // clear error message
+        this.logged = true;
+        //this.displayWelcomeMessage(); // call the method to display welcome message
+        setTimeout(() => {
+          //alert('Welcome!'); // display the welcome message
+          this.router.navigate(['/']); // navigate to home route
+        }, 2000);
+      })
+      .catch((error) => {
+        this.errorMessage = error.message;
+        console.error(error);
+      });
+  }
+
   displayWelcomeMessage() {
     // set a timeout to delay navigation to home route
     setTimeout(() => {

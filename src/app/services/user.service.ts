@@ -3,6 +3,8 @@ import {
   Auth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from '@angular/fire/auth';
 
 @Injectable({
@@ -17,5 +19,17 @@ export class UserService {
 
   login({ email, password }: any) {
     return signInWithEmailAndPassword(this.auth, email, password);
+  }
+
+  loginconGoogle() {
+    return new Promise((resolve, reject) => {
+      signInWithPopup(this.auth, new GoogleAuthProvider())
+        .then((response) => {
+          resolve(response);
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
   }
 }
