@@ -5,6 +5,7 @@ import { SupportingSectionComponent } from './supporting-section/supporting-sect
 import { TopNavModule } from '../top-nav/top-nav.module';
 import { DestacadosComponent } from './destacados/destacados.component';
 import { BillboardComponent } from './billboard/billboard.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import { BillboardComponent } from './billboard/billboard.component';
     DestacadosComponent,
     BillboardComponent,
   ],
-  imports: [CommonModule, TopNavModule],
+  imports: [CommonModule, TopNavModule, NgbModule],
   exports: [HomeLandingComponent],
 })
 export class HomeLandingModule {}

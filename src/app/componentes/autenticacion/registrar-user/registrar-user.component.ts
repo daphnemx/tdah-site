@@ -28,7 +28,7 @@ export class RegistrarUserComponent implements OnInit {
         setTimeout(() => {
           //alert('Welcome!'); // display the welcome message
           this.router.navigate(['/']); // navigate to home route
-        }, 2000);
+        }, 3000);
       })
       .catch((error) => {
         this.errorMessage = error.message;
@@ -47,7 +47,7 @@ export class RegistrarUserComponent implements OnInit {
         setTimeout(() => {
           //alert('Welcome!'); // display the welcome message
           this.router.navigate(['/']); // navigate to home route
-        }, 2000);
+        }, 3000);
       })
       .catch((error) => {
         this.errorMessage = error.message;
@@ -55,11 +55,11 @@ export class RegistrarUserComponent implements OnInit {
       });
   }
 
-  displayWelcomeMessage() {
+  /*displayWelcomeMessage() {
     // set a timeout to delay navigation to home route
     setTimeout(() => {
       //alert('Welcome!'); // display the welcome message
       this.router.navigate(['/']); // navigate to home route
     }, 3000); // change 3000 to the number of milliseconds you want to display the message for
-  }
+  }*/
 }

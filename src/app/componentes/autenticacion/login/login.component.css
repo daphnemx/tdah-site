@@ -1,19 +1,59 @@
-.crear-cuenta {
-    font-size: 1.25rem;
-    padding: 2rem 0;
+.login-container {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+  margin: -1.5rem -5rem -5rem -5rem;
+  height: 100%;
+}
+.ingresa-container {
+  display: flex;
+  padding: 2rem 5rem;
+  flex-grow: 1;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.crear-cuenta button {
-    font-size: 1.25rem;
-    padding: 0;
-    margin-bottom: .5rem;
-    color: #0793a5;
-}
-.login-form-container{
-    display: flex;
-    flex-direction: column;
+.ingresa-button {
+  max-width: 120px;
 }
 
-.login-form-container >*{
-    max-width: 500px;
+.no-cuenta-container {
+  flex-grow: 2;
+  font-size: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #dce1ec;
+  padding: 3rem;
+  margin-bottom: -1.5rem;
+}
+.no-cuenta-container button {
+  font-size: 1.25rem;
+  padding: 0;
+  margin-bottom: 0.5rem;
+}
+.no-cuenta-container img {
+  width: 150px;
+  margin-bottom: 1rem;
+}
+
+.login-form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form-container > * {
+  max-width: 500px;
+}
+
+.google-btn {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.google-btn img {
+  margin-bottom: -0.25rem;
 }

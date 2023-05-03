@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-billboard',
@@ -7,12 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./billboard.component.css'],
 })
 export class BillboardComponent implements OnInit {
-  constructor(private router: Router) {}
+  title = 'appBootstrap';
+  closeResult: string;
+
+  constructor(private router: Router, private modalService: NgbModal) {}
 
   ngOnInit(): void {}
 
   scrolltoDestacados(id) {
     let el = document.getElementById(id);
     el.scrollIntoView();
+  }
+
+  open(content: any) {
+    this.modalService.open(content);
   }
 }

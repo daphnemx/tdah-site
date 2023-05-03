@@ -46,4 +46,17 @@ export class LoginComponent implements OnInit {
       // Login failed, handle the error
     }
   }
+  loginGoogle() {
+    this.userService
+      .loginconGoogle()
+      .then((response) => {
+        console.log('User registered successfully!', response);
+        this.errorMessage = null; // clear error message
+        this.router.navigate(['/']); // navigate to home route
+      })
+      .catch((error) => {
+        this.errorMessage = error.message;
+        console.error(error);
+      });
+  }
 }

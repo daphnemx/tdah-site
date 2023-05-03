@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ArticuloService } from '../../../services/articulo.service';
 import { Articulo } from '../../../models/articulo';
 
@@ -10,10 +10,7 @@ import { Articulo } from '../../../models/articulo';
 export class DestacadosComponent implements OnInit {
   articulos: Articulo[] = [];
 
-  constructor(
-    private articuloService: ArticuloService,
-    private elementRef: ElementRef
-  ) {}
+  constructor(private articuloService: ArticuloService) {}
 
   ngOnInit(): void {
     this.getArticulos();
@@ -21,9 +18,5 @@ export class DestacadosComponent implements OnInit {
 
   async getArticulos(): Promise<void> {
     this.articulos = await this.articuloService.getArticulos();
-  }
-
-  scrollToDestacados(): void {
-    this.elementRef.nativeElement.scrollIntoView({ behavior: 'smooth' });
   }
 }
