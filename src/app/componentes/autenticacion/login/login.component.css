@@ -34,8 +34,9 @@
   margin-bottom: 0.5rem;
 }
 .no-cuenta-container img {
-  width: 150px;
-  margin-bottom: 1rem;
+  width: 120px;
+  margin-bottom: 2rem;
+  margin-top: -4rem;
 }
 
 .login-form-container {
