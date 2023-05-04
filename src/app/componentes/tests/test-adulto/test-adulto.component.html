@@ -1,0 +1,77 @@
+<div class="grid" *ngIf="!showForm">
+  <div class="g-col-2"></div>
+  <div class="g-col-12 g-col-lg-8">
+    <h1>Test para jóvenes y adultos (mayores de 18 años)</h1>
+    <br />
+    <p class="test-disclaimer">
+      Esta evaluación está diseñada para ayudar a identificar posibles signos de
+      Trastorno por Déficit de Atención e Hiperactividad (TDAH). Es importante
+      responder con total honestidad y basar sus respuestas en las acciones y
+      comportamientos observados en los últimos 6 meses. Al proporcionar
+      respuestas precisas, podrá obtener resultados más útiles que le permitirán
+      comprender mejor la situación y buscar el apoyo adecuado si es necesario.
+      Recuerde que este test no es un diagnóstico médico, pero puede ser un
+      primer paso para comprender si es conveniente buscar la opinión de un
+      profesional de la salud.
+    </p>
+    <div style="text-align: center">
+      <button
+        id="comenzar"
+        type="button"
+        class="btn btn-success"
+        (click)="showForm = true"
+      >
+        Comenzar el test
+      </button>
+    </div>
+  </div>
+  <div></div>
+</div>
+
+<div *ngIf="showForm">
+  <div class="form-container">
+    <h5>Inatención</h5>
+    <form #testForm="ngForm" (ngSubmit)="onSubmit(testForm)">
+      <div class="question-item-container">
+        <div
+          *ngFor="let question of questionsInatencion; index as i"
+          class="question-item"
+        >
+          <label class="form-label">{{ question.text }}</label>
+          <div>
+            <input
+              class="form-check-input"
+              type="radio"
+              [name]="'question' + i"
+              [value]="1"
+              [(ngModel)]="question.value"
+              required
+            />
+            Sí
+            <input
+              class="form-check-input"
+              type="radio"
+              [name]="'question' + i"
+              [value]="0"
+              [(ngModel)]="question.value"
+              required
+            />
+            A veces
+            <input
+              class="form-check-input"
+              type="radio"
+              [name]="'question' + i"
+              [value]="0"
+              [(ngModel)]="question.value"
+              required
+            />
+            No
+          </div>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary calcular-btn">
+        Calcular probabilidad
+      </button>
+    </form>
+  </div>
+</div>

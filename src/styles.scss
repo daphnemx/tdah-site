@@ -23,21 +23,28 @@ body {
 .main {
   min-height: 100%;
 }
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h5,
+h7,
+h8 {
+  color: #0d196c;
+}
 h1 {
   font-size: 1.75rem;
   font-family: "Barlow", sans-serif;
-  color: #295257;
 }
 
 h2 {
-  color: #295257;
   line-height: 200%;
 }
 
 p {
   font-size: 1.15rem;
-  line-height:1.75em;
+  line-height: 1.75em;
 }
 
 a {

@@ -1,1 +1,8 @@
-<p>tests works!</p>
+<div>
+  <ng-container *ngIf="id === 'adulto'; else ninoComponent">
+    <app-test-adulto></app-test-adulto>
+  </ng-container>
+  <ng-template #ninoComponent>
+    <app-test-nino></app-test-nino>
+  </ng-template>
+</div>

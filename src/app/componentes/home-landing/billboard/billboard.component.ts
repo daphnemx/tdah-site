@@ -23,4 +23,9 @@ export class BillboardComponent implements OnInit {
   open(content: any) {
     this.modalService.open(content);
   }
+
+  navigateToTest(id: string) {
+    this.modalService.dismissAll(); // Close the modal
+    this.router.navigate(['/tests', id]);
+  }
 }

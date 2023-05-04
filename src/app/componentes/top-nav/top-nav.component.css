@@ -27,6 +27,10 @@ nav a {
 .login-link:hover {
   color: #f9975e;
 }
+
+.logout-btn{
+  padding: 0 !important;
+}
 .bienvenida {
   color:#1bb1c6;
   display: flex;

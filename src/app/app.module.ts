@@ -19,6 +19,7 @@ import { TopNavModule } from './componentes/top-nav/top-nav.module';
 import { HomeModule } from './componentes/home/home.module';
 import { HomeLandingModule } from './componentes/home-landing/home-landing.module';
 import { ArticuloModule } from './componentes/articulo/articulo.module';
+import { TestsModule } from './componentes/tests/tests.module';
 import { AutenticacionModule } from './componentes/autenticacion/autenticacion.module';
 import { ArticuloComponent } from './componentes/articulo/articulo.component';
 import { FooterComponent } from './componentes/footer/footer.component';
@@ -26,6 +27,7 @@ import { HomeLandingComponent } from './componentes/home-landing/home-landing.co
 import { CrearArticuloComponent } from './componentes/crear-articulo/crear-articulo.component';
 import { RegistrarUserComponent } from './componentes/autenticacion/registrar-user/registrar-user.component';
 import { LoginComponent } from './componentes/autenticacion/login/login.component';
+import { TestsComponent } from './componentes/tests/tests.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeLandingComponent },
@@ -39,6 +41,11 @@ const appRoutes: Routes = [
   {
     path: 'crear-articulo',
     component: CrearArticuloComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['login'])),
+  },
+  {
+    path: 'tests/:id',
+    component: TestsComponent,
     ...canActivate(() => redirectUnauthorizedTo(['login'])),
   },
 ];
@@ -60,6 +67,7 @@ const appRoutes: Routes = [
     HomeModule,
     HomeLandingModule,
     ArticuloModule,
+    TestsModule,
     AutenticacionModule,
     BrowserAnimationsModule,
     HttpClientModule,

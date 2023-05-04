@@ -19,7 +19,7 @@
             </h1>
             <div
               class="articulo-contenido-container"
-              [innerHTML]="articulo.contenido"
+              [innerHTML]="articulo.contenido | safeHtml"
             ></div>
           </div>
         </div>
