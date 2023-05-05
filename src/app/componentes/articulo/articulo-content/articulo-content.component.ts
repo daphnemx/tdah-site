@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ArticuloService } from '../../../services/articulo.service';
 import { Articulo } from '../../../models/articulo';
 
-
 @Component({
   selector: 'app-articulo-content',
   templateUrl: './articulo-content.component.html',
@@ -19,20 +18,19 @@ export class ArticuloContentComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-
-    this.articulo = await this.articuloService.getArticulo(this.route.snapshot.paramMap.get('id'));
+    this.articulo = await this.articuloService.getArticulo(
+      this.route.snapshot.paramMap.get('id')
+    );
     if (this.articulo) {
       console.log(this.articulo);
     } else {
       console.error('Articulo not found');
     }
 
-    console.log(this.articulo.imagenes[0].imgUrl)
-
     if (this.articulo) {
-      this.imagenPortada=this.articulo.imagenes.find(img => img.imgPortada).imgUrl;
-      console.log(this.imagenPortada);
+      this.imagenPortada = this.articulo.imagenes.find(
+        (img) => img.imgPortada
+      ).imgUrl;
     }
-
   }
 }
