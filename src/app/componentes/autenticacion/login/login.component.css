@@ -1,3 +1,7 @@
+h1 {
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
 .login-container {
   display: flex;
   gap: 2rem;
@@ -13,13 +17,9 @@
   flex-direction: column;
 }
 
-.ingresa-button {
-  max-width: 120px;
-}
-
 .no-cuenta-container {
   flex-grow: 2;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,9 +29,9 @@
   margin-bottom: -1.5rem;
 }
 .no-cuenta-container button {
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   padding: 0;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.15rem;
 }
 .no-cuenta-container img {
   width: 150px;
@@ -44,17 +44,25 @@
   flex-direction: column;
 }
 
-.login-form-container > * {
-  max-width: 500px;
-}
-
 .google-btn {
-  margin-top: 1rem;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  justify-content: space-around;
 }
 
 .google-btn img {
-  margin-bottom: -0.25rem;
+  margin-right: 0.25rem;
+}
+
+.botones-container {
+  display: flex;
+  gap: 1rem;
+  flex-direction: row;
+  height: 45px;
+}
+
+.botones-container > * {
+  flex-grow: 1;
+  flex-basis: 50%;
 }

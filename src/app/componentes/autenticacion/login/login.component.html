@@ -23,26 +23,28 @@
         />
       </div>
     </div>
+    <div class="botones-container">
+      <button
+        type="button"
+        class="btn btn-primary btn-md ingresa-button"
+        (click)="login()"
+      >
+        Ingresar
+      </button>
 
-    <button
-      type="button"
-      class="btn btn-primary btn-md ingresa-button"
-      (click)="login()"
-    >
-      Ingresar
-    </button>
-    <div>
       <button
         type="button"
         class="btn btn-outline-secondary google-btn"
         (click)="loginGoogle()"
       >
-        <img
-          width="16"
-          alt='Google "G" Logo'
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-        />
-        Ingresar con Google
+        <div>
+          <img
+            width="16"
+            alt='Google "G" Logo'
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+          />
+          Ingresar con Google
+        </div>
       </button>
     </div>
 
@@ -55,13 +57,13 @@
   </div>
   <div class="no-cuenta-container">
     <img src="../../../../assets/img/brain-tree.png" />
-    <h3><strong>¿No tienes cuenta? </strong></h3>
+    <h4>¿No tienes cuenta?</h4>
     <span style="text-align: center; display: flex; flex-direction: column"
       ><span
         ><button type="button" class="btn btn-link" routerLink="/signup">
-          Regístrate</button
-        > para</span
-      ><span>disfrutar del contenido exclusivo.</span></span
+          Regístrate ahora
+        </button></span
+      ><span>y disfruta del contenido exclusivo.</span></span
     >
   </div>
 </div>
