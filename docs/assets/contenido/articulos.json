@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "title": "How to code with JavaScript",
+    "description":"Training, behavioural modification, and medication may have some limited beneficial effects in peer relationships",
+    "image": "https://images.pexels.com/photos/11815778/pexels-photo-11815778.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum, arcu quis aliquet dictum, odio lacus tincidunt quam, quis interdum eros neque sed libero. Lorem ipsum dolor sit amet, consectetur adipiscing elit. \n Sed fermentum, arcu quis aliquet dictum, odio lacus tincidunt quam, quis interdum eros neque sed libero.",
+    "recomendado": true
+  },
+  {
+    "id": 2,
+    "title": "The benefits of study",
+    "description":"Training, behavioural modification, and medication may have some limited beneficial effects in peer relationships",
+    "image": "https://images.pexels.com/photos/15520825/pexels-photo-15520825.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    "text": "Sed posuere quam vel dolor ornare, in bibendum velit tristique. Sed blandit urna nec rhoncus aliquet. Fusce vehicula nibh nibh, in dignissim sapien facilisis sit amet.",
+    "recomendado": true
+  },
+  {
+    "id": 3,
+    "title": "10 healthy recipes for weight loss",
+    "description":"Training, behavioural modification, and medication may have some limited beneficial effects in peer relationships",
+    "image": "https://images.pexels.com/photos/16049221/pexels-photo-16049221.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load",
+    "text": "Mauris rutrum commodo nisi, vel faucibus enim bibendum at. Nam vel tortor purus. Suspendisse mattis purus id orci elementum, sit amet rutrum odio bibendum.",
+    "recomendado": false
+  }
+]
