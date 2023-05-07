@@ -212,9 +212,9 @@ export class TestAdultoComponent implements OnInit {
 
     result = (this.testSum / this.questionsSum) * 100;
 
-    if (result < 40) {
+    if (result <= 30) {
       this.resultado = 'Baja';
-    } else if (result >= 40 && result <= 60) {
+    } else if (result > 30 && result <= 60) {
       this.resultado = 'Moderada';
     } else {
       this.resultado = 'Alta';
