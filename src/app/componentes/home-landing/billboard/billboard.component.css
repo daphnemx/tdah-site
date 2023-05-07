@@ -5,7 +5,6 @@
   overflow: hidden;
   display: flex;
   align-items: center;
-
 }
 
 .background-image {
@@ -26,17 +25,14 @@
   z-index: 1;
 }
 
-
-
-.billboard-cta-container{
+.billboard-cta-container {
   display: flex;
   flex-direction: column;
   width: 50%;
-
 }
 
 .sub-title {
-  font-size: 3.5rem;
+  font-size: 3.15rem;
   margin-bottom: 3rem;
   color: white;
 }
@@ -46,6 +42,7 @@
   justify-content: flex-start;
   gap: 1.5rem;
   flex-wrap: wrap;
+  width: 95%;
 }
 
 .button {
@@ -82,20 +79,19 @@ section {
   padding-top: 10rem;
 }
 
-.modal-body{
+.modal-body {
   padding-top: 1.5rem;
   padding-bottom: 3rem;
 }
 
-.modal-body button{
-  margin-top: .5rem;
-  margin-bottom: .5rem;
+.modal-body button {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 @media (max-width: 1450px) {
-  .billboard-cta-container{
+  .billboard-cta-container {
     width: auto;
-  
   }
   .sub-title {
     font-size: 2.75rem;

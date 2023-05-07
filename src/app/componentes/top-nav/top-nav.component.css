@@ -1,9 +1,14 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
+@import "~bootstrap/dist/css/bootstrap.min.css";
 
 nav {
   z-index: 1000;
   padding: 1.5rem 3rem !important;
   flex-grow: 1;
+  margin-top: 1rem;
+}
+
+#navbarNav2 {
+  margin-top: 0.85rem;
 }
 
 nav a {
@@ -27,21 +32,20 @@ nav a {
 .login-link:hover {
   color: #f9975e;
 }
-
-.logout-btn{
-  padding: 0 !important;
+.logout-btn {
+  padding-right: 0 !important;
 }
 .bienvenida {
-  color:#1bb1c6;
+  color: #1bb1c6;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
 }
-.bienvenida button{
+.bienvenida button {
   margin-top: -1.25rem;
   padding: 0;
-  color:#f57730;
-  font-size:15px;
+  color: #f57730;
+  font-size: 15px;
 }
 
 @media (max-width: 767.98px) {
