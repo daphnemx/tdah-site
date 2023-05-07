@@ -193,25 +193,27 @@ export class TestNinoComponent implements OnInit {
 
     for (const question of questionnaire) {
       if (question.value === null) {
+        // Validar si alguna pregunta tiene valor null
         hasNullValue = true;
         break;
       }
-      sum += question.value;
-      questionsSum += 1;
+      sum += question.value; // sumatoria de los valores
+      questionsSum += 1; // sumatoria de los preguntas
     }
 
     if (hasNullValue) {
       alert('Por favor responda todas las preguntas.');
-      return; // Exit the method if a null value is found
+      return; // Salir si un valor es nulo
     }
 
-    this.testSum = (this.testSum || 0) + sum;
-    this.questionsSum = (this.questionsSum || 0) + questionsSum;
+    this.testSum = (this.testSum || 0) + sum; //guardar suma de los valores
+    this.questionsSum = (this.questionsSum || 0) + questionsSum; //guardar suma de las preguntas
     console.log('Sum of question values:', this.testSum);
     console.log('Sum of questions:', this.questionsSum);
 
-    result = (this.testSum / this.questionsSum) * 100;
+    result = (this.testSum / this.questionsSum) * 100; //Arrojar porcentaje
 
+    //Rangos de porcentaje bajo, moderado y alto
     if (result < 40) {
       this.resultado = 'Baja';
     } else if (result >= 40 && result <= 60) {
@@ -221,7 +223,7 @@ export class TestNinoComponent implements OnInit {
     }
 
     console.log(this.questionsSum, result, this.resultado);
-
+    //Logica para mostrar y ocultar las secciones del test
     if (hide === 'inatencion') {
       this.disclaimerShow();
       this.inatencionShow();
@@ -240,7 +242,7 @@ export class TestNinoComponent implements OnInit {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         this.impulsividadShow();
         this.showResultado = true;
-      }, 1000);
+      }, 600);
     }
   }
 

@@ -240,7 +240,7 @@ export class TestAdultoComponent implements OnInit {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         this.impulsividadShow();
         this.showResultado = true;
-      }, 1000);
+      }, 600);
     }
   }
 
