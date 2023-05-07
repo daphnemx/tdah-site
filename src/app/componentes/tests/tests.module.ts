@@ -4,9 +4,10 @@ import { TestsComponent } from './tests.component';
 import { TestAdultoComponent } from './test-adulto/test-adulto.component';
 import { FormsModule } from '@angular/forms';
 import { TestNinoComponent } from './test-nino/test-nino.component';
+import { ResultadoComponent } from './resultado/resultado.component';
 
 @NgModule({
-  declarations: [TestsComponent, TestAdultoComponent, TestNinoComponent],
+  declarations: [TestsComponent, TestAdultoComponent, TestNinoComponent, ResultadoComponent],
   imports: [CommonModule, FormsModule],
   exports: [TestsComponent],
 })

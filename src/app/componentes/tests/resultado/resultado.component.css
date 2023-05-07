@@ -1,0 +1,23 @@
+h4 {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+.titulo {
+  padding-top: 1rem;
+}
+
+.resultado-title {
+  max-width: 50%;
+  background-color: #ebecf4;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.resultado-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -1,0 +1,68 @@
+<div class="resultado-main-container">
+  <div
+    *ngIf="tipoDeTest === 'nino'; else resultadoAdultoTemplate"
+    #resultadoNino
+    class="resultado-nino-container"
+  >
+    <div @fadeIn class="resultado-title-container">
+      <p>
+        Gracias por tomarse el tiempo para completar el test en nombre de su
+        hijo.
+      </p>
+      <div class="resultado-title">
+        <h4>Su probabilidad de tener TDAH es:</h4>
+        <h1 class="titulo">{{ titulo }}</h1>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="g-col-2"></div>
+      <div class="g-col-12 g-col-lg-8">
+        <p>{{ getDescriptionByTitle(titulo, resultadosNino) }}</p>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #resultadoAdultoTemplate>
+    <div
+      *ngIf="tipoDeTest === 'adulto'; else noTipoDeTestTemplate"
+      #resultadoAdulto
+      class="resultado-nino-container"
+    >
+      <p>Gracias por tomarte el tiempo para completar el test.</p>
+      <div class="resultado title">
+        <h1>
+          Tu de tener TDAH es:
+          <br /><span class="titulo">{{ titulo }}</span>
+        </h1>
+      </div>
+      <div class="grid">
+        <div class="g-col-2"></div>
+        <div class="g-col-12 g-col-lg-8">
+          <p>{{ getDescriptionByTitle(titulo, resultadosAdulto) }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #noTipoDeTestTemplate>
+    <div>
+      Invalid tipoDeTest value. Please provide either 'nino' or 'adulto'.
+    </div>
+  </ng-template>
+  <div class="disclaimer-text grid">
+    <div class="g-col-2"></div>
+    <div class="g-col-lg-8 g-col-12">
+      <p>
+        <strong
+          >Recuerda que estos resultados son solo informativos y no deben
+          considerarse como un diagnóstico definitivo.</strong
+        >
+        Un profesional de la salud calificado es el único que puede proporcionar
+        un diagnóstico adecuado y discutir las opciones de tratamiento más
+        apropiadas. Mantén la esperanza y trabaja en superar cualquier desafío
+        que puedas enfrentar. El futuro estará lleno de posibilidades si te lo
+        permites, recuerda: perspectiva, enfoque y aguante serán claves en esta
+        etapa de la vida.
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,221 @@
-<p>test-nino works!</p>
+<div class="test-main-container">
+  <div class="grid" *ngIf="!showInatencion && showDisclaimer">
+    <div class="g-col-2"></div>
+    <div class="g-col-12 g-col-lg-8">
+      <h1>Test para niños (los padres deben responder)</h1>
+      <br />
+      <p class="test-disclaimer">
+        Esta evaluación está diseñada para ayudar a identificar posibles signos
+        de Trastorno por Déficit de Atención e Hiperactividad (TDAH). Es
+        importante responder con total honestidad y basar sus respuestas en las
+        acciones y comportamientos observados en su hijo(a)
+        <strong>en los últimos 6 meses</strong>. Al proporcionar respuestas
+        precisas, podrá obtener resultados más útiles que le permitirán
+        comprender mejor la situación y buscar el apoyo adecuado si es
+        necesario. Recuerde que este test no es un diagnóstico médico, pero
+        puede ser un primer paso para comprender si es conveniente buscar la
+        opinión de un profesional de la salud.
+      </p>
+      <div style="text-align: center">
+        <button
+          id="comenzar"
+          type="button"
+          class="btn btn-success"
+          (click)="
+            inatencionShow();
+            resetQuestionnaire(questionsInatencion);
+            resetQuestionnaire(questionsHiperactividad)
+          "
+        >
+          Comenzar el test
+        </button>
+      </div>
+    </div>
+    <div></div>
+  </div>
+
+  <div *ngIf="showInatencion" @slideInRightList>
+    <div class="form-container">
+      <h5>Inatención</h5>
+      <div>
+        <div class="question-item-container">
+          <div
+            *ngFor="let question of questionsInatencion; index as i"
+            class="question-item"
+            [ngClass]="{
+              'selected-yes': question.value === 1,
+              'selected-no': question.value === 0
+            }"
+            @fadeInOut
+          >
+            <label class="form-label">{{ question.text }}</label>
+            <div>
+              <span>
+                <button
+                  class="btn btn-sm si"
+                  type="button"
+                  (click)="setValue(question, 1)"
+                >
+                  Sí
+                </button>
+              </span>
+
+              <span>
+                <button
+                  class="btn btn-sm no"
+                  type="button"
+                  (click)="setValue(question, 0)"
+                >
+                  No
+                </button>
+              </span>
+            </div>
+          </div>
+          <span
+            type="submit"
+            class="siguiente-btn"
+            (click)="sumar('inatencion', questionsInatencion)"
+            >Siguiente<span style="margin-left: 0.5rem"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-arrow-right-circle"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"
+                /></svg></span
+          ></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showHiperactividad" @slideInRightList>
+    <div class="form-container">
+      <h5 class="hiperactividad-title">Hiperactividad</h5>
+      <div>
+        <div class="question-item-container">
+          <div
+            *ngFor="let question of questionsHiperactividad; index as i"
+            class="question-item hiperactividad-item"
+            [ngClass]="{
+              'selected-yes': question.value === 1,
+              'selected-no': question.value === 0
+            }"
+            @fadeInOut
+          >
+            <label class="form-label">{{ question.text }}</label>
+            <div>
+              <span>
+                <button
+                  class="btn btn-sm si"
+                  type="button"
+                  (click)="setValue(question, 1)"
+                >
+                  Sí
+                </button>
+              </span>
+
+              <span>
+                <button
+                  class="btn btn-sm no"
+                  type="button"
+                  (click)="setValue(question, 0)"
+                >
+                  No
+                </button>
+              </span>
+            </div>
+          </div>
+          <span
+            type="submit"
+            class="siguiente-btn"
+            (click)="sumar('hiperactividad', questionsHiperactividad)"
+            >Siguiente<span style="margin-left: 0.5rem"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-arrow-right-circle"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"
+                /></svg></span
+          ></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showImpulsividad" @slideInRightList>
+    <div class="form-container">
+      <h5 class="impulsividad-title">Impulsividad</h5>
+      <div>
+        <div class="question-item-container">
+          <div
+            *ngFor="let question of questionsImpulsividad; index as i"
+            class="question-item impulsividad-item"
+            [ngClass]="{
+              'selected-yes': question.value === 1,
+              'selected-no': question.value === 0
+            }"
+            @fadeInOut
+          >
+            <label class="form-label">{{ question.text }}</label>
+            <div>
+              <span>
+                <button
+                  class="btn btn-sm si"
+                  type="button"
+                  (click)="setValue(question, 1)"
+                >
+                  Sí
+                </button>
+              </span>
+
+              <span>
+                <button
+                  class="btn btn-sm no"
+                  type="button"
+                  (click)="setValue(question, 0)"
+                >
+                  No
+                </button>
+              </span>
+            </div>
+          </div>
+          <span
+            type="submit"
+            class="btn btn-primary resultado-btn"
+            (click)="sumar('impulsividad', questionsImpulsividad)"
+            ><span style="margin-right: 0.5rem; margin-bottom: 0.25rem"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-clipboard-pulse"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 1.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1Zm-5 0A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5v1A1.5 1.5 0 0 1 9.5 4h-3A1.5 1.5 0 0 1 5 2.5v-1Zm-2 0h1v1H3a1 1 0 0 0-1 1V14a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V3.5a1 1 0 0 0-1-1h-1v-1h1a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3.5a2 2 0 0 1 2-2Zm6.979 3.856a.5.5 0 0 0-.968.04L7.92 10.49l-.94-3.135a.5.5 0 0 0-.895-.133L4.232 10H3.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 .416-.223l1.41-2.115 1.195 3.982a.5.5 0 0 0 .968-.04L9.58 7.51l.94 3.135A.5.5 0 0 0 11 11h1.5a.5.5 0 0 0 0-1h-1.128L9.979 5.356Z"
+                /></svg></span
+            ><span>Mostrar resultado</span></span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="showResultado">
+    <app-resultado [tipoDeTest]="'nino'" [titulo]="resultado"></app-resultado>
+  </div>
+</div>
