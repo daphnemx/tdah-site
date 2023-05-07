@@ -1,4 +1,4 @@
-.test-main-container {
+/*.test-main-container {
   padding-top: 5rem;
 }
 .form-container {
@@ -19,7 +19,6 @@
   text-align: center;
   background-color: #0f75ba;
   color: #ffff;
-  /*background-color: #eeeeee;*/
 }
 
 .hiperactividad-title {
@@ -56,7 +55,6 @@
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  /*gap: 10px;*/
   margin-top: -0.5rem;
   background-color: #fafafa;
   padding: 2rem;
@@ -133,9 +131,10 @@
 .resultado-btn {
   width: auto;
   align-self: center;
-  padding: 1rem 2rem;
+  padding: .5rem 2rem;
   margin: 1rem;
   display: flex;
   align-items: center;
   flex-direction: row;
 }
+*/

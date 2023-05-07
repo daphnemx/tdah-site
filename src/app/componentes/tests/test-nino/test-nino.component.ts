@@ -13,7 +13,7 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-test-nino',
   templateUrl: './test-nino.component.html',
-  styleUrls: ['./test-nino.component.css'],
+  styleUrls: ['./test-nino.component.css', '../tests.component.css'],
   animations: [
     trigger('fadeInOut', [
       state('hidden', style({ opacity: 0, transform: 'translate(10%, 5%)' })),
