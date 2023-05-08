@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-registrar-user',
@@ -12,10 +12,17 @@ export class RegistrarUserComponent implements OnInit {
   password: string;
   errorMessage: string;
   logged = false;
+  returnUrl: string;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+  }
 
   register() {
     this.userService
@@ -27,7 +34,8 @@ export class RegistrarUserComponent implements OnInit {
         //this.displayWelcomeMessage(); // call the method to display welcome message
         setTimeout(() => {
           //alert('Welcome!'); // display the welcome message
-          this.router.navigate(['/']); // navigate to home route
+          //this.router.navigate(['/']); // navigate to home route
+          this.router.navigateByUrl(this.returnUrl);
         }, 3000);
       })
       .catch((error) => {
@@ -46,7 +54,8 @@ export class RegistrarUserComponent implements OnInit {
         //this.displayWelcomeMessage(); // call the method to display welcome message
         setTimeout(() => {
           //alert('Welcome!'); // display the welcome message
-          this.router.navigate(['/']); // navigate to home route
+          //this.router.navigate(['/']); // navigate to home route
+          this.router.navigateByUrl(this.returnUrl);
         }, 3000);
       })
       .catch((error) => {

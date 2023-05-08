@@ -1,5 +1,10 @@
 footer {
-    height: 10rem;
-    background-color: #1d2030;
-    margin-top: auto;
+  height: 15rem;
+  background-color: #1d2030;
+  margin-top: auto;
+  background-image: url("../../../assets/img/footer.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }

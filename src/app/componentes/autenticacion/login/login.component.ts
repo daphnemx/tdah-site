@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
-import { Router } from '@angular/router';
-import { User } from 'firebase/auth';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,23 +11,20 @@ export class LoginComponent implements OnInit {
   email: string;
   password: string;
   errorMessage: string;
+  returnUrl: string;
 
   loggedIn = false;
   userEmail: string | undefined;
 
-  constructor(private userService: UserService, private router: Router) {}
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    /* this.userService.auth.onAuthStateChanged((user: User | null) => {
-      if (user) {
-        this.loggedIn = true;
-        this.userEmail = user.email;
-        console.log(this.userEmail);
-      } else {
-        this.loggedIn = false;
-        this.userEmail = undefined;
-      }
-    });*/
+    this.returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    console.log(this.returnUrl);
   }
 
   async login() {
@@ -39,7 +35,8 @@ export class LoginComponent implements OnInit {
       });
       console.log(response); // Log the response object to the console
       // Login successful
-      this.router.navigate(['/']); // Redirect to the home page
+      //this.router.navigate(['/']); // Redirect to the home page
+      this.router.navigateByUrl(this.returnUrl);
     } catch (error) {
       this.errorMessage = error;
       console.log(this.errorMessage);
@@ -52,7 +49,8 @@ export class LoginComponent implements OnInit {
       .then((response) => {
         //console.log('User registered successfully!', response);
         this.errorMessage = null; // clear error message
-        this.router.navigate(['/']); // navigate to home route
+        //this.router.navigate(['/']); // navigate to home route
+        this.router.navigateByUrl(this.returnUrl);
       })
       .catch((error) => {
         this.errorMessage = error.message;

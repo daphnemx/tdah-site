@@ -15,8 +15,9 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
+import { AuthGuard } from './_helpers/auth.guard';
+
 import { TopNavModule } from './componentes/top-nav/top-nav.module';
-import { HomeModule } from './componentes/home/home.module';
 import { HomeLandingModule } from './componentes/home-landing/home-landing.module';
 import { ArticuloModule } from './componentes/articulo/articulo.module';
 import { TestsModule } from './componentes/tests/tests.module';
@@ -36,17 +37,17 @@ const appRoutes: Routes = [
   {
     path: 'articulo/:id',
     component: ArticuloComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['login'])),
+    canActivate: [AuthGuard],
   },
   {
     path: 'crear-articulo',
     component: CrearArticuloComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['login'])),
+    canActivate: [AuthGuard],
   },
   {
     path: 'tests/:id',
     component: TestsComponent,
-    ...canActivate(() => redirectUnauthorizedTo(['login'])),
+    canActivate: [AuthGuard],
   },
 ];
 
@@ -64,7 +65,6 @@ const appRoutes: Routes = [
     //AngularFireStorage,
     FormsModule,
     TopNavModule,
-    HomeModule,
     HomeLandingModule,
     ArticuloModule,
     TestsModule,
@@ -77,7 +77,7 @@ const appRoutes: Routes = [
     provideAuth(() => getAuth()),
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

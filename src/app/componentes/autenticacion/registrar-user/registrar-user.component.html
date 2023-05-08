@@ -1,57 +1,64 @@
-<ng-template #createAccount>
-  <div class="crear-cuenta container mb-3">
-    <h1 style="margin-bottom: 2rem">Crea una cuenta</h1>
-    <div style="max-width: 600px">
-      <label for="exampleFormControlInput1" class="form-label">Email</label>
-      <input
-        type="email"
-        class="form-control"
-        id="exampleFormControlInput1"
-        [(ngModel)]="email"
-        name="email"
-        required
-      />
-    </div>
-    <div class="mb-3" style="max-width: 600px">
-      <label for="inputPassword5" class="form-label">Password</label>
-      <input
-        type="password"
-        id="inputPassword5"
-        class="form-control"
-        aria-labelledby="passwordHelpBlock"
-        [(ngModel)]="password"
-        name="password"
-        required
-      />
-      <div id="passwordHelpBlock" class="form-text">
-        Tu password debe ser de 6 caracteres como mínimo.
+<div class="grid">
+  <div class="g-col-3"></div>
+  <ng-container
+    *ngTemplateOutlet="logged ? welcomeMessage : createAccount"
+  ></ng-container>
+  <ng-template #createAccount>
+    <div class="crear-cuenta-container mb-3 g-col-6">
+      <h1>Crea una cuenta</h1>
+      <div>
+        <label for="exampleFormControlInput1" class="form-label">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="exampleFormControlInput1"
+          [(ngModel)]="email"
+          name="email"
+          required
+        />
+      </div>
+      <div class="mb-3">
+        <label for="inputPassword5" class="form-label">Password</label>
+        <input
+          type="password"
+          id="inputPassword5"
+          class="form-control"
+          aria-labelledby="passwordHelpBlock"
+          [(ngModel)]="password"
+          name="password"
+          required
+        />
+        <div id="passwordHelpBlock" class="form-text">
+          Tu password debe ser de 6 caracteres como mínimo.
+        </div>
+      </div>
+      <div class="botones-container">
+        <button
+          type="button"
+          class="btn btn-primary btn-md ingresa-button"
+          (click)="register()"
+        >
+          Crear cuenta
+        </button>
+
+        <button
+          type="button"
+          class="btn btn-outline-secondary google-btn"
+          (click)="registerGoogle()"
+        >
+          <div>
+            <img
+              width="16"
+              alt='Google "G" Logo'
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
+            />
+            Ingresar con Google
+          </div>
+        </button>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary mb-3" (click)="register()">
-      De acuerdo, regístrame!
-    </button>
-    <div
-      class="alert alert-danger"
-      role="alert"
-      *ngIf="errorMessage"
-      [innerHtml]="errorMessage"
-    ></div>
-    <div>
-      <button
-        type="button"
-        class="btn btn-outline-secondary google-btn"
-        (click)="registerGoogle()"
-      >
-        <img
-          width="16"
-          alt='Google "G" Logo'
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"
-        />
-        Registrarme con Google
-      </button>
-    </div>
-  </div>
-</ng-template>
+  </ng-template>
+</div>
 
 <ng-template #welcomeMessage>
   <div class="alert alert-success" role="alert">
@@ -61,7 +68,3 @@
     <p class="mb-0">Ya puedes disfrutar el contenido exclusivo.</p>
   </div>
 </ng-template>
-
-<ng-container
-  *ngTemplateOutlet="logged ? welcomeMessage : createAccount"
-></ng-container>

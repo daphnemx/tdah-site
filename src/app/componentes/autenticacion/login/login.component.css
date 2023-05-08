@@ -60,6 +60,7 @@ h1 {
   gap: 1rem;
   flex-direction: row;
   height: 45px;
+  margin-top: 1.5rem;
 }
 
 .botones-container > * {

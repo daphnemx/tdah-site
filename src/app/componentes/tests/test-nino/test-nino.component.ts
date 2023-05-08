@@ -63,7 +63,7 @@ import { NgForm } from '@angular/forms';
 export class TestNinoComponent implements OnInit {
   questionsInatencion = [
     {
-      text: '¿Tiene dificultad para mantener la atención en tareas o actividades laborales o de estudio?',
+      text: '¿Le resulta difícil mantener la atención en tareas escolares o actividades de juego?',
       value: null,
     },
     {
@@ -71,11 +71,11 @@ export class TestNinoComponent implements OnInit {
       value: null,
     },
     {
-      text: '¿Comete errores por descuido en el trabajo, en la escuela o en otras actividades?',
+      text: '¿Comete errores por descuido en trabajos escolares o en otras actividades?',
       value: null,
     },
     {
-      text: '¿Evita o le disgustan las actividades que requieren un esfuerzo mental sostenido (por ejemplo, tareas complejas, lectura larga)?',
+      text: '¿Le disgustan, evita o rechaza actividades que requieren esfuerzo mental sostenido (por ejemplo, tareas escolares complejas o lecturas largas)?',
       value: null,
     },
     {
@@ -83,7 +83,7 @@ export class TestNinoComponent implements OnInit {
       value: null,
     },
     {
-      text: '¿Suele perder objetos necesarios para el trabajo, la escuela o actividades recreativas (por ejemplo, llaves, teléfono, documentos)?',
+      text: '¿Pierde fácilmente objetos necesarios para la escuela o actividades recreativas (por ejemplo, útiles escolares, juguetes, ropa)?',
       value: null,
     },
     {

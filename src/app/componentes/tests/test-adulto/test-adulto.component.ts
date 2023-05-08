@@ -114,7 +114,7 @@ export class TestAdultoComponent implements OnInit {
       value: null,
     },
     {
-      text: '¿Parece estar siempre activo, como impulsado por un motor encendido?',
+      text: '¿Parece estar siempre "en marcha" o "impulsado por un motor"?',
       value: null,
     },
     {
@@ -137,11 +137,11 @@ export class TestAdultoComponent implements OnInit {
       value: null,
     },
     {
-      text: '¿Tiene dificultad para esperar su turno en situaciones grupales o en juegos?',
+      text: '¿Tiene dificultad para esperar su turno en situaciones grupales o conversaciones?',
       value: null,
     },
     {
-      text: '¿Interrumpe o se entromete en conversaciones o juegos de otros?',
+      text: '¿Interrumpe o se entromete en conversaciones o actividades de otros?',
       value: null,
     },
     {
